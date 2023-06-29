@@ -38,23 +38,24 @@ const userController = {
             const user = await User.create(req.body);
             return res.status(200).json(user);
         } catch (err) {
+            console.log(err);
             return res.status(500).json(err);
         }
     },
 
     async updateUser(req, res) {
         try {
-          const user = await User.findOneAndUpdate(
-            { _id: req.params.userId },
-            { $set: req.body },
-            { runValidators: true, new: true }
-          );
-    
-          if (!user) {
-            return res.status(404).json({ message: 'No user with this ID' });
-          }
-    
-          return res.status(200).json(user);
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $set: req.body },
+                { runValidators: true, new: true }
+            );
+
+            if (!user) {
+                return res.status(404).json({ message: 'No user with this ID' });
+            }
+
+            return res.status(200).json(user);
         } catch (err) {
             return res.status(500).json(err);
         }
@@ -107,7 +108,7 @@ const userController = {
                 return res.status(404).json({ message: 'No friend found with that ID :(' });
             }
 
-            return res.status(200).json(student);
+            return res.status(200).json(friend);
         } catch (err) {
             console.log(err);
             return res.status(500).json(err);
