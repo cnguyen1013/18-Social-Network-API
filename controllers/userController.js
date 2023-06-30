@@ -17,7 +17,7 @@ const userController = {
 
     async getUser(req, res) {
         try {
-            const user = await User.findone({ _id: req.params.userId})
+            const user = await User.findOne({ _id: req.params.userId})
 
                 .populate({ path: "thoughts", select: "-__v" })
                 .populate({ path: "friends", select: "-__v"});
